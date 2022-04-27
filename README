@@ -1,4 +1,5 @@
 Ideja: WEB stranica za online kuharicu gdje korisnici mogu dodavati svoje recepte i pregledavati druge
 Backend framework: Flask
-Frontend: Bootstrap
+Frontend framework: Node.js i Vue.js
 Baza: MySQL
+IDE: Visual Studio Code
