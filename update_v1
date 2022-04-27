@@ -1,0 +1,1 @@
+Dosad napravljen API za autentifikaciju korisnika. Autentifikacija se izvršava preko json web tokena koji su spremljeni u http only cookie.
