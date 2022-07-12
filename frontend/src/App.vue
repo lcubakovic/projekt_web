@@ -2,8 +2,10 @@
   <div id="app">
     <div class="container">
       <NavBar></NavBar>
+      <div class="background">
       <router-view></router-view>
     </div>
+   </div>
   </div>
 </template>
 
@@ -28,4 +30,9 @@ export default {
 </script>
 
 <style>
+ 
+.background {
+  background-image: url('./assets/bg.jpg');
+  background-size: cover;
+}  
 </style>

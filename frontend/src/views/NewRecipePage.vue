@@ -34,6 +34,7 @@
 <script>
 import { mapActions, mapState } from "vuex";
 import { POST_RECIPE } from "@/common/types/actions";
+import { ref } from 'vue';
 
 export default {
   name: "newRecipePageView",
@@ -92,6 +93,25 @@ export default {
   padding: 1rem 2rem;
   border-radius: 0.5rem;
   margin-top: 2rem;
+}
+
+.btn_rec {
+  cursor: pointer;
+  background-color: #2aeb74;
+  font-size: 1.125rem;
+  color: #030e1b;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  margin-top: 2rem;
+  margin-left: 6rem;
+  margin-right: 6rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.btn_rec:hover {
+  color: #ddd;
+  background: #000;
 }
 
 .btn:hover {

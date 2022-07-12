@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <RecipeList></RecipeList>
+    <RecipeList class="recipes"></RecipeList>
   </div>
 </template>
 
@@ -21,6 +21,15 @@ export default {
   padding: 0;
   margin: 0;
   color: #030e1b;
+  font-family: sans-serif;
+}
+
+
+.recipes {
+  padding: 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   font-family: sans-serif;
 }
 
