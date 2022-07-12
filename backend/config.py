@@ -1,10 +1,10 @@
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-dbhost = ''
-dbuser = ''
+dbhost = 'localhost'
+dbuser = 'juraj'
 dbpass = ''
-database = ''
+database = 'test_database'
 
 
 class Config:
@@ -17,8 +17,12 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
+
     SQLALCHEMY_DATABASE_URI =\
-    'mysql+pymysql://{0}:{1}@{2}/{3}'.format(dbuser, dbpass, dbhost, database)
+    'sqlite:///C:/Users/Strikan/Documents/web-projekti/online-kuharica/kuharicaDB.db'
+
+    #SQLALCHEMY_DATABASE_URI =\
+    #'mysql+pymysql://{0}:{1}@{2}/{3}'.format(dbuser, dbpass, dbhost, database)
 
 class TestingConfig(Config):
     pass
