@@ -16,6 +16,18 @@ const instance = axios.create({
   xsrfCookieName: "csrf_access_token",
 });
 
+const fileInstance = axios.create({
+  baseURL: API_URL,
+  headers: {
+    accept: "application/json",
+    "Accept-Language": "en-US,en;q=0.8",
+    "Content-Type": `multipart/form-data;`,
+  },
+  timeout: 3000,
+  withCredentials: true,
+  xsrfCookieName: "csrf_access_token",
+});
+
 instance.interceptors.response.use(
   function (response) {
     return response;

@@ -13,6 +13,7 @@ class Recipe(db.Model):
     is_publish = db.Column(db.Boolean(), default=False)
     created_at = db.Column(db.DateTime(), nullable=False, server_default=db.func.now())
     updated_at = db.Column(db.DateTime(), nullable=False, server_default=db.func.now(), onupdate=db.func.now())
+    image = db.Column(db.String(100))
     user_id = db.Column(db.Integer(), db.ForeignKey("user.id"))
 
     def data(self):
@@ -23,7 +24,8 @@ class Recipe(db.Model):
             'num_of_servings': self.num_of_servings,
             'cook_time': self.cook_time,
             'directions':self.directions,
-            'user_id': self.user_id
+            'user_id': self.user_id,
+            'image': self.image
         }
 
     @classmethod

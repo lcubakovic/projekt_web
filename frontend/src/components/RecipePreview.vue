@@ -1,17 +1,18 @@
 <template>
-  <div class="col">
-    <div class="card h-100">
-      <img
-        src="https://podravkaiovariations.azureedge.net/80ec2a16-638e-11eb-b1a5-0242ac12002d/v/f2b1f6a6-64bc-11eb-b6c2-0242ac130010/1600x1200-f2b21938-64bc-11eb-9498-0242ac130010.webp"
-        class="card-img-top"
-      />
-      <div class="card-body">
-        <router-link :to="recipeLink" class="preview-link">
+  <div class="col-lg-4 mb-3 d-flex align-items-stretch">
+    <router-link :to="recipeLink" class="preview-link">
+      <div class="card">
+        <img
+          :src="'http://localhost:5000/api/v1/images/' + recipe.image"
+          class="card-img-top"
+          alt="Card Image"
+        />
+        <div class="card-body d-flex flex-column">
           <h5 v-text="recipe.name" class="card-title" />
-          <p v-text="recipe.description" class="card-text" />
-        </router-link>
+          <p v-text="recipe.description" class="card-text mb-4" />
+        </div>
       </div>
-    </div>
+    </router-link>
   </div>
 </template>
 

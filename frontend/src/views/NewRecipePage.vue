@@ -24,17 +24,20 @@
         <label for="floatingTextarea2">Recipe Description</label>
       </div>
 
-      <button class="btn" type="submit">
-        Save Recipe
-      </button>
+      <label
+        >File
+        <input type="file" @change="onFileChange($event)" />
+      </label>
+
+      <button class="btn" type="submit">Save Recipe</button>
     </form>
   </div>
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
-import { POST_RECIPE } from "@/common/types/actions";
-import { ref } from 'vue';
+import { POST_RECIPE, POST_IMAGE } from "@/common/types/actions";
+import { ref } from "vue";
 
 export default {
   name: "newRecipePageView",
@@ -42,13 +45,26 @@ export default {
     return {
       name: null,
       description: null,
+      selectedFile: null,
     };
   },
   methods: {
     onSubmit(name, description) {
       this.$store
-        .dispatch(POST_RECIPE, { name, description })
+        .dispatch(POST_IMAGE, this.selectedFile)
+        .then((r) => this.postRecipe(name, description, r.filename));
+      // this.$store
+      //   .dispatch(POST_RECIPE, { name, description })
+      //   .then(() => this.$router.push({ name: "home" }));
+    },
+    postRecipe(name, description, filename) {
+      console.log("Posting recipe");
+      this.$store
+        .dispatch(POST_RECIPE, { name, description, filename })
         .then(() => this.$router.push({ name: "home" }));
+    },
+    onFileChange(event) {
+      this.selectedFile = event.target.files[0];
     },
   },
   computed: {
@@ -60,7 +76,7 @@ export default {
 </script>
 
 <style>
-*{
+* {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -118,5 +134,4 @@ export default {
   color: #ddd;
   background: #000;
 }
-
 </style>

@@ -12,3 +12,6 @@ export const DELETE_RECIPE = "deleteRecipe";
 
 export const FETCH_START = "fetchStart";
 export const FETCH_END = "fetchEnd";
+
+export const POST_IMAGE = "postImage";
+export const SET_FILENAME = "setFilename";

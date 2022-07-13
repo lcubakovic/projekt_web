@@ -1,10 +1,13 @@
 from datetime import datetime, timedelta
-
+import os
 from flask import Flask
 from config import config as cfg
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
 from flask_jwt_extended import JWTManager
+
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+UPLOAD_FOLDER = BASE_DIR + '/uploads'
 
 db = SQLAlchemy(metadata=MetaData(naming_convention={
     'pk': 'pk_%(table_name)s',
@@ -28,6 +31,9 @@ def create_app(config_name):
     mApp.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(days=30)
     mApp.config['JWT_COOKIE_CSRF_PROTECT'] = False
     mApp.config['JWT_SESSION_COOKIE'] = False
+
+    mApp.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+    mApp.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
     #mApp.config['JWT_COOKIE_SECURE'] = True
     #mApp.config['JWT_COOKIE_SAMESITE'] = ['None']
 

@@ -5,4 +5,4 @@ api_bp = Blueprint('api', __name__, url_prefix='/api/v1/')
 api = Api(api_bp)
 
 from .auth import user
-from .resources import user, recipe
+from .resources import user, recipe, file

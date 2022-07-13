@@ -1,10 +1,13 @@
 import ApiService from "@/common/services/api";
 import { RecipesService } from "@/common/services/api";
+import { FileService } from "@/common/services/api";
 
 import {
   DELETE_RECIPE,
   FETCH_RECIPE,
   POST_RECIPE,
+  POST_IMAGE,
+  SET_FILENAME,
 } from "@/common/types/actions";
 
 import { SET_ERROR, SET_RECIPE } from "@/common/types/mutations";
@@ -13,6 +16,7 @@ const initialState = {
   recipe: {
     name: "",
     description: "",
+    filename: "",
   },
 };
 
@@ -32,6 +36,18 @@ const actions = {
       ApiService.post("recipes/", { recipe })
         .then(({ data }) => {
           commit(SET_RECIPE, data.recipe);
+          resolve(data);
+        })
+        .catch(({ response }) => {
+          reject(response);
+        });
+    });
+  },
+  async [POST_IMAGE]({ commit }, image) {
+    return new Promise((resolve, reject) => {
+      FileService.post(image)
+        .then(({ data }) => {
+          commit(SET_FILENAME, data.filename);
           resolve(data);
         })
         .catch(({ response }) => {
@@ -59,6 +75,9 @@ const actions = {
 const mutations = {
   [SET_RECIPE](state, recipe) {
     state.recipe = recipe;
+  },
+  [SET_FILENAME](state, filename) {
+    state.filename = filename;
   },
 };
 

@@ -19,7 +19,7 @@ class DevelopmentConfig(Config):
     DEBUG = True
 
     SQLALCHEMY_DATABASE_URI =\
-    'sqlite:///C:/Users/ADMIN/Desktop/projekt_web/kuharicaDB.db'
+    'sqlite:///C:/Users/Strikan/Documents/web-projekti/projekt_web/kuharicaDB.db'
 
     #SQLALCHEMY_DATABASE_URI =\
     #'mysql+pymysql://{0}:{1}@{2}/{3}'.format(dbuser, dbpass, dbhost, database)

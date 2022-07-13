@@ -1,4 +1,5 @@
 import instance from "./axios";
+import fileInstance from "./axios";
 
 const ApiService = {
   query(resource, params) {
@@ -50,5 +51,19 @@ export const RecipesService = {
   },
   destroy(slug) {
     return ApiService.delete(`recipes/${slug}`);
+  },
+};
+
+export const FileService = {
+  get(filename) {
+    return ApiService.get(`images/${filename}`, filename);
+  },
+  post(file) {
+    let data = new FormData();
+
+    console.log(file);
+
+    data.append("file", file);
+    return fileInstance.post("image", data);
   },
 };

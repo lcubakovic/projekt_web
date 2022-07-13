@@ -1,8 +1,11 @@
-import http
+import os
+from os.path import exists
 from urllib import response
-from flask import jsonify, make_response, request
+from urllib import response
+from flask import jsonify, make_response, request, current_app, url_for, send_from_directory
 from flask_restful import Resource
 from http import HTTPStatus
+from werkzeug.utils import secure_filename
 
 from flask_jwt_extended import ( get_jwt_identity, jwt_required )
 
@@ -10,6 +13,12 @@ from sqlalchemy import true
 
 from .. import api
 from app.models.recipes import Recipe as RecipeModel
+
+
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
+
+def allowed_file(filename):
+	return '/' in filename and filename.rsplit('/', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 class Recipes(Resource):
@@ -36,11 +45,14 @@ class Recipes(Resource):
         data = received['recipe']
         user_id = get_jwt_identity()
 
+        filename = received['recipe']['filename']
+
         recipe = RecipeModel( name = data['name'],
                               description = data['description'],
                               num_of_servings = 1,
                               cook_time = 1,
                               directions = "",
+                              image = filename,
                               user_id = user_id )
         recipe.is_publish = True
         recipe.save()
@@ -51,7 +63,6 @@ class Recipes(Resource):
         }
 
         return make_response(payload, HTTPStatus.CREATED)
-
 
 class Recipe(Resource):
     def get(self, recipe_id: int):
